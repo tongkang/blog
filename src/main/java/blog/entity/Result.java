@@ -1,63 +1,39 @@
 package blog.entity;
 
-import java.io.Serializable;
 
-public class Result {
+public abstract class Result<T> {
 
-    private String status;
+    public enum ResultStatus{
+        Ok("ok"),
+        FAIL("fail");
+
+        private String status;
+
+        ResultStatus(String status) {
+            this.status = status;
+        }
+    }
+
+
+    ResultStatus status;
     String msg;
-    boolean isLogin;
-    Object data;
+    T data;
 
-    //使用静态工厂方法（设计模式的一种），来替代构造器
-    public static Result failure(String message) {
-        return new Result("fail", message, false);
-    }
-
-    public static Result success(String message) {
-        return new Result("ok", message, false);
-    }
-
-    public Result(String status, String msg, boolean isLogin) {
-        this(status, msg, isLogin, null);
-    }
-
-    public Result(String status, String msg, boolean isLogin, Object data) {
+    protected Result(ResultStatus status, String msg, T data) {
         this.status = status;
         this.msg = msg;
-        this.isLogin = isLogin;
         this.data = data;
     }
 
     public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+        return status.status;
     }
 
     public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public boolean isLogin() {
-        return isLogin;
-    }
-
-    public void setLogin(boolean login) {
-        isLogin = login;
-    }
-
     public Object getData() {
         return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
     }
 }
