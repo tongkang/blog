@@ -2,7 +2,7 @@ package blog;
 
 import org.junit.jupiter.api.Test;
 
-public class smokeTest {
+public class SmokeTest {
     @Test
     public void test() {
 
