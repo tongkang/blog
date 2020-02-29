@@ -17,16 +17,12 @@ public class UserService implements UserDetailsService {
     //因为HashMap不是安全，不同步的线程不安全，所以用ConcurrentHashMap
 //    private Map<String, User> users = new ConcurrentHashMap<>();
 
-
+    @Inject
     private UserMapper userMapper;
 
+    @Inject
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Inject
-    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder, UserMapper userMapper) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userMapper = userMapper;
-    }
 
 
     public void save(String username, String password) {
